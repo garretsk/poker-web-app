@@ -1,6 +1,15 @@
-import Image from 'next/image'
+import { Round } from '@/classes/round';
+import { Player } from '@/classes/player';
+import Image from 'next/image';
 
 export default function Home() {
+
+  let round: Round = new Round(["Garret", "Player2"]);
+  let winner: Player = round.play();
+  console.log(winner.getName());
+  
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -106,6 +115,7 @@ export default function Home() {
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
+          <p>Hello world {winner.getName()}</p>
         </a>
       </div>
     </main>
