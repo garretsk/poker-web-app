@@ -20,6 +20,10 @@ export class Round {
     }
   }
 
+  getPlayers(): Player[] {
+    return this.players;
+  }
+
   play(): Player {
     for (let card = 0; card < NUM_CARDS; card++) {
       for (let player = 0; player < this.players.length; player++) {
