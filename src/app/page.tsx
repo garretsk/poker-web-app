@@ -7,14 +7,10 @@ import PlayButton from '@/components/PlayButton';
 import GameBoard from '@/components/GameBoard';
 
 export default function Home() {
-
-
-  
   const [gameStarted, setGameStarted] = React.useState(false);
   const [input, setInput] = React.useState('');
   const [round, setRound] = React.useState(new Round([]));
   const [winner, setWinner] = React.useState('');
-
 
   function handleClick() {
     setGameStarted(true);
@@ -23,34 +19,14 @@ export default function Home() {
 
     let round: Round = new Round(names);
     let winner: Player = round.play();
-
-    /*if(winners.length > 1) {
-      let result: string = 'Tie between: ';
-      result += winners[0].getName();
-      for (let i = 1; i < winners.length; i++) {
-        result += ', ' + winners[i].getName();
-      }
-      setWinner(result);
-    }
-    else if (winners.length === 1) {
-      setWinner(winners[0].getName());
-    }*/
     
     setWinner(winner.getName());
     setRound(round);
-
-    
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   }
-
-
-
-  
-  
-
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
