@@ -1,11 +1,12 @@
-import { CardRanks } from "@/constants/card-ranks";
-import { CardSuits } from "@/constants/card-suits";
-import { Card } from "./card";
-import { StackOfCards } from "./stack-of-cards";
 import { Deck } from "./deck";
 import { Player } from "./player";
 import { NUM_CARDS, PokerHands } from "@/constants/poker";
 
+/**
+ * Class representing a round of poker.
+ *
+ * Represents a round of poker being played.
+ */
 export class Round {
   private static MIN_PLAYERS = 2;
   private deck: Deck;
@@ -20,10 +21,24 @@ export class Round {
     }
   }
 
+  /**
+   * getPlayers
+   *
+   * Returns the players participating in the round.
+   * 
+   * @returns {Player[]} The participating players.
+   */
   getPlayers(): Player[] {
     return this.players;
   }
 
+  /**
+   * play
+   *
+   * Simulates the playing of a round of poker.
+   * 
+   * @returns {Player} The winning player.
+   */
   play(): Player {
     for (let card = 0; card < NUM_CARDS; card++) {
       for (let player = 0; player < this.players.length; player++) {
@@ -32,9 +47,11 @@ export class Round {
     }
 
     let playerResults: string[] = [];
+    let playerHighCards: number[] = [];
     for (const player of this.players) {
       let outcome = player.evaluateHand();
       playerResults.push(outcome.name);
+      playerHighCards.push(player.getHighCard());
     }
 
     let index: number;
@@ -84,7 +101,14 @@ export class Round {
       return this.players[index];
     }
 
-    index = playerResults.indexOf(PokerHands.HIGH_CARD.name);
-    return this.players[index];
+    let indexOfHighest: number = 0;
+    let highest: number = 0;
+    for (let i = 0; i < playerHighCards.length; i++) {
+      if (playerHighCards[i] > highest) {
+        indexOfHighest = i;
+        highest = playerHighCards[i];
+      }
+    }
+    return this.players[indexOfHighest];
   }
 }

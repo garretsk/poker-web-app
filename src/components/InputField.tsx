@@ -1,12 +1,15 @@
-import { Round } from '@/classes/round';
-import { Player } from '@/classes/player';
-import Image from 'next/image';
-
 interface InputFieldProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
+/**
+ * Represents a custom component called InputField
+ *
+ * This component contains the input field for the names of the players.
+ *
+ * @component
+ */
 export default function InputField(props: InputFieldProps) {
 
   return (

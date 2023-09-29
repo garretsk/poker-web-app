@@ -5,6 +5,11 @@ import { StackOfCards } from "./stack-of-cards";
 import { Player } from "./player";
 import { getRandom } from "@/utils/random";
 
+/**
+ * Class representing a deck of cards.
+ *
+ * Represents a deck of playing cards for poker.
+ */
 export class Deck extends StackOfCards {
   constructor() {
     super();
@@ -16,6 +21,15 @@ export class Deck extends StackOfCards {
     }
   }
 
+  /**
+   * dealCard
+   *
+   * Deals a card to a player.
+   * 
+   * @param {Player} player - The player to deal the card to.
+   * 
+   * @returns {void} None.
+   */
   dealCard(player: Player): void {
     let random = getRandom(0, super.getLength());
     player.receiveCard(super.removeCard(random));

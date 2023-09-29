@@ -2,13 +2,9 @@
 import React from 'react';
 import { Round } from '@/classes/round';
 import { Player } from '@/classes/player';
-import Image from 'next/image';
 import InputField from '@/components/InputField';
 import PlayButton from '@/components/PlayButton';
 import GameBoard from '@/components/GameBoard';
-import { StackOfCards } from '@/classes/stack-of-cards';
-import { NUM_CARDS } from '@/constants/poker';
-import { Card } from '@/classes/card';
 
 export default function Home() {
 
@@ -27,6 +23,19 @@ export default function Home() {
 
     let round: Round = new Round(names);
     let winner: Player = round.play();
+
+    /*if(winners.length > 1) {
+      let result: string = 'Tie between: ';
+      result += winners[0].getName();
+      for (let i = 1; i < winners.length; i++) {
+        result += ', ' + winners[i].getName();
+      }
+      setWinner(result);
+    }
+    else if (winners.length === 1) {
+      setWinner(winners[0].getName());
+    }*/
+    
     setWinner(winner.getName());
     setRound(round);
 
